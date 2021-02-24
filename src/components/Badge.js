@@ -7,6 +7,7 @@ import './styles/Badge.css'
 class Badge extends React.Component {
     render(){
         return(
+            
             <div className="Badge">
                 <div className="Badge__header">
                     <img src={confLogo} alt="logo de la conferencia" />
