@@ -1,8 +1,10 @@
 import React from 'react'
 import Badge from '../components/Badge'
-import header from '../images/badge-header.svg'
+import header from '../images/platziconf-logo.svg'
 import './styles/BadgeNew.css'
 import BadgeForm from '../components/BadgeForm'
+import api from '../api'
+import md5 from 'crypto-js/md5'
 
 class BadgeNew extends React.Component {
     constructor(props){
@@ -27,12 +29,27 @@ class BadgeNew extends React.Component {
         })
     }
 
+    handleSubmit = async e => {
+        e.preventDefault()
+        //creando avatar
+        let hash = md5(this.state.form.email).toString()
+        this.state.form.avatarUrl = `https://www.gravatar.com/avatar/${hash}?d=identicon`
+        
+        this.setState({ loading: true, error: null })
+        try{
+            await api.badges.create(this.state.form)
+            this.setState({ loading: false })
+        }catch(error){
+            this.setState({ loading: false, error: error})
+        }        
+    }
+
     render() {
         return (
             <>
                 {/* <Navbar /> */}
                 <div className="BadgeNew__hero">
-                    <img className="img-fluid" src={header} alt="logo" />
+                    <img className="BadgeNew__hero-image img-fluid" src={header} alt="logo" />
                 </div>
 
                 <div className="container">
@@ -46,6 +63,7 @@ class BadgeNew extends React.Component {
                             <BadgeForm 
                                 onChange={this.handleChange}
                                 formValues={this.state.form}
+                                onSubmit={this.handleSubmit}
                             />
                         </div>
                     </div>

@@ -440,6 +440,15 @@
       "jobTitle": "Lawyer",
       "twitter": "ckaufmanpr",
       "id": "npaYZKI"
+    },
+    {
+      "firstName": "Elys",
+      "lastName": "Gonzalez",
+      "jobTitle": "Software Developer",
+      "twitter": "estigon",
+      "email": "elysestiben@gmail.com",
+      "avatarUrl": "https://www.gravatar.com/avatar/766db0ccb3e9b008bfbd054151e19b98?d=identicon",
+      "id": "koOH-gP"
     }
   ]
 }
