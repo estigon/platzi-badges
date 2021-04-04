@@ -1,0 +1,16 @@
+.custom__button{
+    height: 55px;
+    border-radius: 10px;
+}
+
+.wrapp {
+    width: 30%;
+}
+
+.btn-success {
+
+    color: #fff;
+    background-color: #7DCD40;
+    border-color: #7DCD40;
+
+}

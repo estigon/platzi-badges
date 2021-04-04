@@ -7,11 +7,11 @@ import PageLoading from '../components/PageLoading'
 import api from '../api'
 import md5 from 'crypto-js/md5'
 
-class BadgeNew extends React.Component {
+class BadgeEdit extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            loading: false,
+            loading: true,
             error: null,
             form: {
                 firstName: '',
@@ -21,6 +21,23 @@ class BadgeNew extends React.Component {
                 email: ''
             }
         }        
+    }
+
+    componentDidMount(){
+        this.fetchData()
+    }
+
+    fetchData = async e => {
+        this.setState({error: null, loading: true})
+        console.log(this.props)
+        try {
+            const data = await api.badges.read(
+                this.props.match.params.badgeId
+                )
+            this.setState({loading: false, form: data})
+        } catch (error) {
+            this.setState({loading: false, error:true})
+        }
     }
 
     handleChange = e => {
@@ -40,7 +57,7 @@ class BadgeNew extends React.Component {
         
         this.setState({ loading: true, error: null })
         try{
-            await api.badges.create(this.state.form)
+            await api.badges.update(this.props.match.params.badgeId, this.state.form)
             this.setState({ loading: false })
             
             //redirigir a badges al enviar correctamente el formulario
@@ -69,7 +86,7 @@ class BadgeNew extends React.Component {
                             />
                         </div>
                         <div className="col-6">
-                            <h1>New Attendant</h1>
+                            <h1>Edit Attendant</h1>
                             <BadgeForm 
                                 onChange={this.handleChange}
                                 formValues={this.state.form}
@@ -84,4 +101,4 @@ class BadgeNew extends React.Component {
     }
 }
 
-export default BadgeNew
+export default BadgeEdit
