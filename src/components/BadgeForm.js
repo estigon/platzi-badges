@@ -17,53 +17,58 @@ class BadgeForm extends Component {
             <div>                
                 <form onSubmit={this.props.onSubmit} >
                     <div className="form-group">
-                        <label>First Name</label>
+                        <label htmlFor="firstName">First Name</label>
                         <input 
-                        onChange={this.props.onChange} 
-                        type="text" 
-                        className="form-control" 
-                        name="firstName" 
-                        value={this.props.formValues.firstName} 
+                            onChange={this.props.onChange} 
+                            type="text" 
+                            className="form-control" 
+                            name="firstName"
+                            id="firstName" 
+                            value={this.props.formValues.firstName} 
                         />
                     </div>
                     <div className="form-group">
-                        <label>Last Name</label>
+                        <label htmlFor="lastName">Last Name</label>
                         <input 
-                        onChange={this.props.onChange} 
-                        type="text" 
-                        className="form-control" 
-                        name="lastName" 
-                        value={this.props.formValues.lastName}
+                            onChange={this.props.onChange} 
+                            type="text" 
+                            className="form-control" 
+                            name="lastName"
+                            id="lastName" 
+                            value={this.props.formValues.lastName}
+                            />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            onChange={this.props.onChange} 
+                            type="email" 
+                            className="form-control" 
+                            name="email" 
+                            id="email" 
+                            value={this.props.formValues.email}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Email</label>
+                        <label htmlFor="jobTitle">Job title</label>
                         <input 
-                        onChange={this.props.onChange} 
-                        type="email" 
-                        className="form-control" 
-                        name="email" 
-                        value={this.props.formValues.email}
+                            onChange={this.props.onChange} 
+                            type="text" 
+                            className="form-control" 
+                            name="jobTitle" 
+                            id="jobTitle" 
+                            value={this.props.formValues.jobTitle}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Job title</label>
+                        <label htmlFor="twitter">Twitter</label>
                         <input 
-                        onChange={this.props.onChange} 
-                        type="text" 
-                        className="form-control" 
-                        name="jobTitle" 
-                        value={this.props.formValues.jobTitle}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Twitter</label>
-                        <input 
-                        onChange={this.props.onChange} 
-                        type="text" 
-                        className="form-control" 
-                        name="twitter" 
-                        value={this.props.formValues.twitter}
+                            onChange={this.props.onChange} 
+                            type="text" 
+                            className="form-control" 
+                            name="twitter" 
+                            id="twitter" 
+                            value={this.props.formValues.twitter}
                         />
                     </div>
                     <button onClick={this.handleClick} className="btn btn-primary">Save</button>
