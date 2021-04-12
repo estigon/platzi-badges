@@ -1,9 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import {fireEvent, render, screen} from '@testing-library/react'
-//import userEvent from '@testing-library/user-event'
 import BadgeForm from '../components/BadgeForm'
-//import BadgeMock from '../__mocks__/BadgeMock'
 
 const state = {
     loading: false,
@@ -30,16 +28,22 @@ describe('<BadgeForm />', () => {
         />)
 
         //const component = screen.getByLabelText("First Name")
-        //console.log(screen.debug(component))
+        //screen.debug(component)
                 
         expect(screen.getByLabelText("First Name")).toBeInTheDocument()
     })
 
     test('<BadgeForm /> se puede escribir en un input fireEvent', () => {
+        
+        // const onChangeMock = jest.fn(e => e.target.value)
         const onChangeMock = jest.fn()
         const onSubmitMock = jest.fn()
         const copyValues = {...state}
         copyValues.form.firstName = 'landa'
+
+        // const onChangeMock = jest.fn(
+        //     e => copyValues.form.firstName = e.target.value
+        // )
 
         render(<BadgeForm 
             onChange={onChangeMock}
@@ -49,25 +53,30 @@ describe('<BadgeForm />', () => {
         />)
 
         //consigo el elemento por el valor que muestra en pantalla
-        const input = screen.getByLabelText("First Name")
-        
-        
-        //console.log(screen.debug(input))
+        const input = screen.getByLabelText("First Name")        
 
         //llamo al metodo onChange cambiando el valor del input
-        fireEvent.change(input, {target: {value: 'Maria'}})
-        screen.debug(input)
-        //screen.debug()
+        /**
+          **Se puede probar expect(onChangeMock.mock.results[0].value).toBe('valor esperado') tenga el valor 
+            que le estamos devolviendo, que seria lo que le estariamos pasando al metodo real
+          **Podriamos probar que el metodo ha sido llamado expect(onChangeMock).toHaveBeenCalled()
+        */
+        fireEvent.change(input, {target: {value: 'Maria'}})                        
         //compruebo el nuevo valor del input
-        //expect(input.value).toBe('Maria')
-
+        //expect(onChangeMock).toHaveBeenCalled()
+        // expect(onChangeMock.mock.results[0].value).toBe('Maria')
+        expect(input.value).toBe('Maria')
+        //console.log(input)
+        //console.log(input.value)//it shows "Maria"
+        screen.debug(input)
+        console.log(input.target)
     })
-    
-    /*test('<BadgeForm /> se puede escribir en un input userEvent', () => {
+
+    test('<BadgeForm /> muestra un mensaje de error ', () => {
         const onChangeMock = jest.fn()
         const onSubmitMock = jest.fn()
         const copyValues = {...state}
-        copyValues.form.firstName = 'landa'
+        copyValues.error = new Error("error test")
 
         render(<BadgeForm 
             onChange={onChangeMock}
@@ -76,14 +85,8 @@ describe('<BadgeForm />', () => {
             error={copyValues.error}
         />)
 
-        //consigo el elemento por el valor que muestra en pantalla
-        const input = screen.getByDisplayValue('landa')
+        expect(screen.getByText(/error test/i)).toBeInTheDocument()
+    })
+    
 
-        // input.setSelectionRange(0,5)
-        // userEvent.type(input, '{backspace}Maria')
-        userEvent.clear(input)
-        //compruebo el nuevo valor del input
-        expect(input).toHaveValue('Maria')
-
-    })*/
 })

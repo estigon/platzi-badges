@@ -24,7 +24,7 @@ class BadgeForm extends Component {
                             className="form-control" 
                             name="firstName"
                             id="firstName" 
-                            value={this.props.formValues.firstName} 
+                            defaultValue={this.props.formValues.firstName} 
                         />
                     </div>
                     <div className="form-group">
@@ -35,7 +35,7 @@ class BadgeForm extends Component {
                             className="form-control" 
                             name="lastName"
                             id="lastName" 
-                            value={this.props.formValues.lastName}
+                            defaultValue={this.props.formValues.lastName}
                             />
                     </div>
                     <div className="form-group">
@@ -46,7 +46,7 @@ class BadgeForm extends Component {
                             className="form-control" 
                             name="email" 
                             id="email" 
-                            value={this.props.formValues.email}
+                            defaultValue={this.props.formValues.email}
                         />
                     </div>
                     <div className="form-group">
@@ -57,7 +57,7 @@ class BadgeForm extends Component {
                             className="form-control" 
                             name="jobTitle" 
                             id="jobTitle" 
-                            value={this.props.formValues.jobTitle}
+                            defaultValue={this.props.formValues.jobTitle}
                         />
                     </div>
                     <div className="form-group">
@@ -68,7 +68,7 @@ class BadgeForm extends Component {
                             className="form-control" 
                             name="twitter" 
                             id="twitter" 
-                            value={this.props.formValues.twitter}
+                            defaultValue={this.props.formValues.twitter}
                         />
                     </div>
                     <button onClick={this.handleClick} className="btn btn-primary">Save</button>
